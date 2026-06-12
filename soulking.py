@@ -39,7 +39,7 @@ def check_expire(expire_date_str):
         return False
 
 # [+] ဤနေရာတွင် စောနက Copy ယူလာသည့် keys.txt ၏ Raw Link ကို ထည့်ပါ
-GITHUB_RAW_URL = "https://raw.githubusercontent.com/htun10419-byte/soul-king-/refs/heads/main/keys.txt"
+GITHUB_RAW_URL = "https://github.com/htun10419-byte/soul-king-/blob/main/keys.txt"
 # ====================================================
 
 saved_active_token = None
