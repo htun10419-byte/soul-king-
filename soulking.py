@@ -15,6 +15,28 @@ WIFI_URL = "Https://portal-as.ruijienetworks.com/api/auth/wifidog?stage=portal&g
 GATEWAY_IP = "192.168.120.1" 
 VOUCHER_CODE = "888356" 
 MY_MAC = "74:38:22:a0:f0:a4"
+            access_granted = False
+            for line in auth_data:
+                if "|" in line:
+                    parts = line.split("|")
+                    if len(parts) == 3:
+                        db_dev_id, db_key, db_expire = parts
+                        if db_dev_id.strip() == dev_id and db_key.strip() == user_key:
+                            if check_expire(db_expire.strip()):
+                                access_granted = True
+                                break
+                            else:
+                                print(f"{RED}[!] This Key has Expired! (သက်တမ်းကုန်သွားပါပြီ){RESET}")
+                                sys.exit()
+
+def check_expire(expire_date_str):
+    try:
+        expire_date = datetime.strptime(expire_date_str, "%Y-%m-%d")
+        if datetime.now() > expire_date:
+            return False  # သက်တမ်းကုန်သွားပြီ
+        return True       # သက်တမ်းရှိသေးတယ်
+    except:
+        return False
 
 # [+] ဤနေရာတွင် စောနက Copy ယူလာသည့် keys.txt ၏ Raw Link ကို ထည့်ပါ
 GITHUB_RAW_URL = "https://raw.githubusercontent.com/htun10419-byte/soul-king-/refs/heads/main/keys.txt"
